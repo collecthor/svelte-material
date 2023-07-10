@@ -1,0 +1,25 @@
+{
+	"branches": ["master"],
+	"plugins": [
+		[
+			"@semantic-release/commit-analyzer",
+			{
+				"preset": "conventionalcommits"
+			}
+		],
+		[
+			"@semantic-release/exec",
+			{
+				"prepareCmd": "tar -czvf dist.tar.gz dist"
+			}
+		],
+		[
+			"@semantic-release/github",
+			{
+				"assets": [{ "path": "dist.tar.gz", "label": "Distribution archive" }]
+			}
+		],
+		"@semantic-release/npm",
+		"@semantic-release/release-notes-generator"
+	]
+}

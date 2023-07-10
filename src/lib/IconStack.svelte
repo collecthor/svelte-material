@@ -1,18 +1,14 @@
 <script lang="ts" context="module">
     import { writable } from "svelte/store"
-	let count = 0;
-
-    const icons: Record<string, string> = {};
+	const icons: Record<string, string> = {};
     const reactiveIcons = writable<Record<string, string>>({});
 
-    export function registerIcon(name: string, path:string) {
+    export function registerIcon(name: string, path:string): void {
         icons[name] = path;
         reactiveIcons.set(icons);
-        return count == 1;
     }
 </script>
 <script lang="ts">
-    count++;
 </script>
 <div style="display: none" class="iconStack">
     <svg>

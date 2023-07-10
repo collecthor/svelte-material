@@ -6,18 +6,16 @@
     import DynamicIcon from "$lib/DynamicIcon.svelte";
     import * as icons from '@mdi/js';
 
-    const iconNames: (keyof typeof icons)[] = <(keyof typeof icons)[]>Object.keys(icons)
+    const iconNames: (keyof typeof icons)[] = <(keyof typeof icons)[]>Object.keys(icons).slice(0, 10000)
+
+    function randomColor():string {
+        const color = Math.floor(Math.random()*16777215).toString(16);
+        return `#${color}`;
+    }
 </script>
 <IconStack/>
-<div style="color: red">
-<Abacus/>
-<AbjadArabic/>
-</div>
 <h1>Below are all included icons, rendered using the DynamicIcon component</h1>
 {#each iconNames as icon}
-    <DynamicIcon name={icon} />
+    <DynamicIcon name={icon} color={randomColor()} size=25 title={icon}/>
 
 {/each}
-
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
