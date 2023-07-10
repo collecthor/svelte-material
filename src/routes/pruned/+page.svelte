@@ -1,22 +1,20 @@
 <script lang="ts">
-    import Abacus from "$lib/generated/Abacus.svelte";
-	import AbjadArabic from "$lib/generated/AbjadArabic.svelte";
-	import IconStack from "$lib/IconStack.svelte";
-	import { onMount, SvelteComponent } from "svelte";
+    import IconStack from "$lib/IconStack.svelte";
+	import { onMount } from "svelte";
 
     function randomColor():string {
         const color = Math.floor(Math.random()*16777215).toString(16);
         return `#${color}`;
     }
 
-    let loadedIcons: SvelteComponent[] = [];
+    let loadedIcons: ConstructorOfATypedSvelteComponent[] = [];
 
-    let components: Record<string, () => Promise<{ default: SvelteComponent}>> = {};
+    let components: Record<string, () => Promise<{ default: ConstructorOfATypedSvelteComponent}>> = {};
 
     async function regenerate() {
         console.log("Regenerating");
         const icons = Object.values(components);
-        const chosenIcons: Promise<{ default: SvelteComponent }>[] = [];
+        const chosenIcons: Promise<{ default: ConstructorOfATypedSvelteComponent }>[] = [];
         let count = 0;
         while(count < 10) {
             chosenIcons.push(icons[Math.floor(Math.random() * icons.length)]());
@@ -29,7 +27,7 @@
     onMount(async () => {
 
 
-        components = await import.meta.glob<{ default: SvelteComponent }>('$lib/generated/*.svelte');
+        components = await import.meta.glob<{ default: ConstructorOfATypedSvelteComponent }>('$lib/generated/*.svelte');
         regenerate();
     });
 
