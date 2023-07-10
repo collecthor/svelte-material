@@ -23,6 +23,8 @@ jobs:
       - name: Run ViTest tests
         run: npm run test
       - run: npm run check
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
       - name: Build the package
         run: npm run package
       - run: >
