@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const destination = path.join(__dirname, "/../lib/generated");
 
 await fs.mkdir(destination, { recursive: true });
-const index = await fs.open(path.join(destination, 'index.js'), 'w+')
+const index = await fs.open(path.join(destination, 'icons.js'), 'w+')
 
 const template = (await fs.readFile(path.join(__dirname, "TemplateIcon.svelte"))).toString();
 
