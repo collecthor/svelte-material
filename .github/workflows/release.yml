@@ -4,18 +4,6 @@ on:
     branches:
       - master
 jobs:
-  tests:
-    timeout-minutes: 3
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run ViTest tests
-        run: npm run test
-      - run: npm run check
   release:
     name: Automated release
     permissions:
@@ -23,16 +11,18 @@ jobs:
       issues: write
       pull-requests: write
       id-token: write
-    needs:
-      - tests
+    timeout-minutes: 3
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        with:
-          node-version: 19
       - name: Install dependencies
         run: npm ci
+      - name: Generate files
+        run: node src/lib/scripts/build.js
+      - name: Run ViTest tests
+        run: npm run test
+      - run: npm run check
       - name: Build the package
         run: npm run package
       - run: >
