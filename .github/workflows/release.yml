@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Generate files
-        run: node src/lib/scripts/build.js
+        run: node src/scripts/build.js
       - name: Run ViTest tests
         run: npm run test
       - run: npm run check
