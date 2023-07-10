@@ -11,7 +11,7 @@
     export let viewBox = "0 0 24 24";
     export let ariaLabel = void 0;
     export let ariaHidden = void 0;
-    export let title: string|undefined;
+    export let title: string|undefined = undefined;
     export let desc = void 0;
     let className = void 0;
     export { className as class }
