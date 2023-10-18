@@ -3,7 +3,7 @@
     "version": "7.3.67",
     "scripts": {
         "dev": "vite dev",
-        "build": "NODE_OPTIONS=--max-old-space-size=16384 vite build && npm run package",
+        "build": "node src/scripts/build.js && NODE_OPTIONS=--max-old-space-size=16384 vite build && npm run package",
         "preview": "vite preview",
         "package": "svelte-kit sync && svelte-package && publint",
         "prepublishOnly": "npm run package",
