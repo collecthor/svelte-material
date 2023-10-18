@@ -35,8 +35,6 @@ jobs:
 
       - name: Publish to NPM
         if: steps.commit.outputs.changes_detected == 'true'
-        run: |
-          npm run build
-          npm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
