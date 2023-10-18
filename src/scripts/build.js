@@ -9,8 +9,8 @@ const __dirname = path.dirname(__filename);
 const destination = path.join(__dirname, '/../lib/generated');
 
 await fs.mkdir(destination, { recursive: true });
-const index = await fs.open(path.join(destination, 'icons.js'), 'w+');
-
+const indexHandle = await fs.open(path.join(destination, 'icons.js'), 'w+');
+let indexContents = '';
 const template = (await fs.readFile(path.join(__dirname, 'TemplateIcon.svelte'))).toString();
 
 const promises = [];
@@ -22,10 +22,10 @@ for (let key in icons) {
     const componentName = key.slice(3);
 
     promises.push(fs.writeFile(`${destination}/${componentName}.svelte`, data));
-    promises.push(index.write(`export { default as ${componentName} } from '$lib/generated/${componentName}.svelte';\n`));
+    indexContents = indexContents + `export { default as ${componentName} } from '$lib/generated/${componentName}.svelte';\n`;
 }
 
-
+promises.push(indexHandle.write(indexContents));
 
 import { join } from 'path';
 
