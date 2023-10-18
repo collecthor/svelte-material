@@ -13,4 +13,6 @@ jobs:
       - name: Run ViTest tests
         run: npm run test
       - run: node src/scripts/build.js
+      - run: ls -lahr src/
+      - run: cat src/generated/icons.js
       - run: npm run check
