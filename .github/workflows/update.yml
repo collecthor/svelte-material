@@ -1,0 +1,42 @@
+# Inspired by https://github.com/Propaganistas/mdi-vue3
+name: Update @mdi/js
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update:
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - name: Install current dependencies
+        run: npm install
+      - name: Check for @mdi/js update
+        run: |
+          npm install @mdi/js
+          npm run version
+      - name: Commit updated @mdi/js version
+        id: commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Fix: auto updated to the latest mdi/js version'
+
+      - name: Publish to NPM
+        if: steps.commit.outputs.changes_detected == 'true'
+        run: |
+          npm run build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

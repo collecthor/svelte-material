@@ -2,14 +2,17 @@ name: Continuous integration (PRs)
 on: pull_request
 jobs:
   test:
-    timeout-minutes: 3
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: latest
       - run: npm ci
       - name: Run ViTest tests
         run: npm run test
+      - run: node src/scripts/build.js
+      - run: ls -lahR src/
+      - run: cat src/lib/generated/icons.js
       - run: npm run check
