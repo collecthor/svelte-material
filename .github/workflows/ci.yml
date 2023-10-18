@@ -8,8 +8,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: latest
       - run: npm ci
       - name: Run ViTest tests
         run: npm run test
       - run: npm run check
+      # Test the full build as well
+      - run: npm run build
