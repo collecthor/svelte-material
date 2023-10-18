@@ -12,6 +12,5 @@ jobs:
       - run: npm ci
       - name: Run ViTest tests
         run: npm run test
-      - run: npm run check
-      # Test the full build as well
       - run: npm run build
+      - run: npm run check
