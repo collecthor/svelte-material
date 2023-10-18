@@ -26,7 +26,7 @@ jobs:
       - name: Check for @mdi/js update
         run: |
           npm install @mdi/js
-          npm run version
+          npm run generate
       - name: Commit updated @mdi/js version
         id: commit
         uses: stefanzweifel/git-auto-commit-action@v4
