@@ -15,14 +15,14 @@ const template = (await fs.readFile(path.join(__dirname, 'TemplateIcon.svelte'))
 
 const promises = [];
 for (let key in icons) {
-    if (key == "__esModule") {
+    if (!key.startsWith('mdi')) {
         continue;
      }
     const data = template.replace(/mdiFolder/g, key);
     const componentName = key.slice(3);
 
     promises.push(fs.writeFile(`${destination}/${componentName}.svelte`, data));
-    promises.push(index.write(`export { default as ${componentName}} from '$lib/generated/${componentName}.svelte';\n`));
+    promises.push(index.write(`export { default as ${componentName} } from '$lib/generated/${componentName}.svelte';\n`));
 }
 
 
