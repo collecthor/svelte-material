@@ -59,6 +59,6 @@
     "types": "./dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@mdi/js": "^7.2.95"
+        "@mdi/js": "^7.3.67"
     }
 }
