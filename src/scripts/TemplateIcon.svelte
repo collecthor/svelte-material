@@ -16,7 +16,7 @@
 	export let ariaHidden = void 0;
 	export let title: string | undefined = undefined;
 	export let desc = void 0;
-	let className = void 0;
+	let className: string | undefined = void 0;
 	export { className as class };
 
 	onMount(() => {
