@@ -1,4 +1,4 @@
-# Archives
+# Deprecated!
 
 I found a solution with better adoption and support for (almost) all icon libraries: https://github.com/unplugin/unplugin-icons
 Since it is better maintained we've archived our own solution in favor of theirs.
