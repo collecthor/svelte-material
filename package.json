@@ -1,6 +1,6 @@
 {
     "name": "@collecthor/svelte-material-icons",
-    "version": "7.3.67",
+    "version": "7.4.47",
     "scripts": {
         "dev": "vite dev",
         "generate": "node src/scripts/build.js",
